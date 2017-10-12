@@ -31,6 +31,7 @@ passport.use (
         });
         // if user already exist pass in it.
         if (userExist) {
+          userExist.updateLastLogin ();
           return done (null, userExist);
         } else {
           // if user doesnt exist but has his/her email assigned use this
@@ -43,7 +44,7 @@ passport.use (
                 facebookID: id,
               },
             });
-
+            updatedUser.updateLastLogin ();
             return done (null, updatedUser);
           }
         }
@@ -59,6 +60,7 @@ passport.use (
         });
 
         const user = await newUser.save ();
+        user.updateLastLogin ();
         done (null, user);
       } catch (err) {
         done (err);
@@ -85,6 +87,7 @@ passport.use (
         });
         // if user already exist pass in it.
         if (userExist) {
+          userExist.updateLastLogin ();
           return done (null, userExist);
         } else {
           // if user doesnt exist but has his/her email assigned use this
@@ -97,7 +100,7 @@ passport.use (
                 googleID: id,
               },
             });
-
+            updatedUser.updateLastLogin ();
             return done (null, updatedUser);
           }
         }
@@ -111,6 +114,7 @@ passport.use (
         });
 
         const user = await newUser.save ();
+        user.updateLastLogin ();
         done (null, user);
       } catch (err) {
         done (err);

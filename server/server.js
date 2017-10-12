@@ -6,6 +6,8 @@ const mongoose = require ('./db/mongoose');
 const express = require ('express');
 const bodyParser = require ('body-parser');
 const authRoutes = require ('./routes/authRoutes');
+const todoRoutes = require ('./routes/todoRoutes');
+const activityRoutes = require ('./routes/activityRoutes');
 const passport = require ('passport');
 const cookieSession = require ('cookie-session');
 
@@ -30,6 +32,8 @@ app.use (passport.initialize ());
 app.use (passport.session ());
 
 authRoutes (app);
+todoRoutes (app);
+activityRoutes (app);
 
 app.get ('/', (req, res) => {
   res.send ({
@@ -40,3 +44,5 @@ app.get ('/', (req, res) => {
 app.listen (PORT, () => {
   console.log (`server successfully listening on port ${PORT}`);
 });
+
+module.exports = app;
